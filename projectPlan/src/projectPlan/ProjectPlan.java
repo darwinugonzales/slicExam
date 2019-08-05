@@ -125,12 +125,47 @@ public class ProjectPlan {
 				endDate = tasksList.get(i).endDate;
 			}
 		}
-		
+
+		System.out.println("-----------------------------------------------------------------------------------------------------------");
 		System.out.println("Target Start Date: " + startDate);
 		System.out.println("Target Completion Date: " + endDate);
+		System.out.println(
+				padRight("TaskID", 7) + " " +
+				padRight("Start Date", 15) + " " +
+				padRight("End Date", 15) + " " + 
+				padRight("Duration", 15) + " " +
+				padRight("Task", 25) + " " +
+				padRight("Dependency", 25) + " "
+		);
+		System.out.println(
+				padRight("-------", 7) + " " +
+				padRight("---------------", 15) + " " +
+				padRight("---------------", 15) + " " + 
+				padRight("---------------", 15) + " " +
+				padRight("-------------------------", 25) + " " +
+				padRight("-------------------------", 25) + " "
+		);
 		for(int i = 0; i < tasksList.size(); i++) {
-			System.out.println(tasksList.get(i).taskId + " " + tasksList.get(i).startDate + " " + tasksList.get(i).endDate + " " + tasksList.get(i).duration);
+			System.out.print(
+					padRight(tasksList.get(i).taskId, 7) + " " +
+					padRight(tasksList.get(i).startDate, 15) + " " +
+					padRight(tasksList.get(i).endDate, 15) + " " + 
+					padRight(tasksList.get(i).duration+"", 15) + " " +
+					padRight(tasksList.get(i).taskName, 25) + " "
+			);
+			for(int j = 0; j < tasksList.get(i).dependency.size(); j++) {
+				System.out.print(tasksList.get(i).dependency.get(j).taskId + ", ");
+			}
+			System.out.println("");
 		}
+		System.out.println("-----------------------------------------------------------------------------------------------------------");
 	}
 	
+	public static String padRight(String s, int n) {
+	     return String.format("%-" + n + "s", s);  
+	}
+
+	public static String padLeft(String s, int n) {
+	    return String.format("%" + n + "s", s);  
+	}
 }
